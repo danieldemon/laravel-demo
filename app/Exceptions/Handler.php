@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -31,6 +32,7 @@ class Handler extends ExceptionHandler
      *
      * @param  \Exception  $exception
      * @return void
+     * @throws
      */
     public function report(Exception $exception)
     {
@@ -46,6 +48,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof AppException) {
+            return response()->json($exception->toArray(), $exception->getStatus());
+        }
+
         return parent::render($request, $exception);
     }
 }
