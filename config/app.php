@@ -160,6 +160,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Macro Service Providers...
+         */
+        App\Providers\Macros\BlueprintMacroServiceProvider::class,
+        App\Providers\Macros\ResponseMacroServiceProvider::class,
+
     ],
 
     /*
